@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        <meta charset="utf-8">
+        <title RockPaperScissors></title>
+    </head>
+    <script>
+        function getComputerChoice(){
+            let randomHand = Math.floor(Math.random() * 100)
+            if (randomHand <= 33){
+                return "scissors";
+            }else if (randomHand > 33 & randomHand <= 66){
+                return "rock";
+            }else return "paper";
+        }
+        function playRound(playerSelection, computerSelection){
+            let ps = playerSelection.toLowerCase();
+            console.log(ps);
+            console.log(computerSelection);
+            if(ps == computerSelection){
+                return "tie";
+            }
+            else if((ps == "rock" && computerSelection == "scissors")|| (ps == "paper" && computerSelection == "rock")){
+                return "You Win!";
+            }else return "You Lose!";
+        }
+        function playGame(){
+            let playerCount = 0;
+            let computerCount = 0;
+            let winner;
+            for(let i = 0; i < 5; i++){
+               let yourHand = prompt("Rock, Paper, or Scissors?");
+               winner = playRound(yourHand,getComputerChoice());
+               if(winner == "You Win!"){
+                console.log(winner)
+                playerCount += 1;
+               }
+               else if( winner == "You Lose!"){
+                computerCount += 1;
+                console.log("You Lost!");
+                }else console.log("Tie!");
+            }
+            if(playerCount > computerCount){
+                return "You won the game!";
+             } else if(playerCount == computerCount){
+                return "You Tied!";
+             } 
+             else return "You lost the game!";
+        }
+    </script>
+</html>
