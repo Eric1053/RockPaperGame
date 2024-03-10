@@ -8,8 +8,6 @@ function getComputerChoice(){
 }
 function playRound(playerSelection, computerSelection){
     let ps = playerSelection.toLowerCase();
-    console.log(ps);
-    console.log(computerSelection);
     if(ps == computerSelection){
         return "Tie!";
     }
@@ -18,14 +16,97 @@ function playRound(playerSelection, computerSelection){
     }else return "You Lost!";
 }
 function calculateScore(result){
-    if(result == 'Tie!'){
-    }else if(result == 'You Won!'){
-        return playerCount++;
-    }else{
-        return computerCount++;
+    if(result == 'You Won!'){
+        playerCount++;
+    }else if(result=='You Lost!'){
+        computerCount++;
     }
 }
+function createResetButton(){
+    const reset = document.createElement('button');
+    reset.classList.add('reset-button');
+    reset.textContent = "RESTART GAME?";
+    reset.addEventListener('click',resetGame);
+
+    const resetButtonContainer = document.getElementById('resetButtonContainer');
+    resetButtonContainer.appendChild(reset);
+}
+function resetGame(){
+    computerCount = 0;
+    playerCount = 0;
+    const resetButton = document.querySelector('.reset-button');
+    if(resetButton){
+        resetButton.parentNode.removeChild(resetButton);
+    }
+    div.textContent = "Player Score: " + `${playerCount}` + ` Computer Score ${computerCount}`;
+    computer.style = '';
+    user.style = '';
+    canPlay= true;
+    h2.textContent='';
+}
+
+function highlightWinner(elem){
+    const bgColor = 'yellow';
+    elem.style.backgroundColor = bgColor;
+    elem.style.border = "dotted 3px violet"
+}
+let canPlay = true;
+let playerCount = 0;
+let computerCount = 0;
 let pageName = document.querySelector(".pageHeader");
+let div = document.createElement('div');
+div.classList.add('scoreboard');
+let btns = document.querySelector('.buttons')
+let h2  = document.createElement('h2');
+const user = document.querySelector('.user-name');
+const computer = document.querySelector('.computer-name');
+h2.classList.add('result');
+pageName.appendChild(h2);
+btns.addEventListener('click', (event) =>{
+    if(!canPlay){
+        return;
+    }
+    let target = event.target;
+    let playersHand;
+    console.log('TEST');
+    switch(target.className){
+        case 'btn-rock':
+            playersHand = 'Rock';
+            break;
+        case 'btn-paper':
+            playersHand = 'Paper';
+            break;
+        case 'btn-scissors':
+            playersHand = 'Scissors';
+            break;
+    }
+
+    let result = playRound(playersHand,getComputerChoice());
+    calculateScore(result);
+
+    h2.textContent = result;
+    pageName.appendChild(h2);
+
+    if (playerCount == 5) {
+        // Delay the creation of the reset button
+        setTimeout(() => {
+            createResetButton();
+            highlightWinner(user);
+            canPlay = false;
+        }, 10);
+    } else if (computerCount == 5) {
+        // Delay the creation of the reset button
+        setTimeout(() => {
+            highlightWinner(computer);
+            createResetButton();
+            canPlay = false;
+        }, 10);
+    }
+    div.textContent = "Player Score: " + `${playerCount}` + ` Computer Score ${computerCount}`;
+    document.body.appendChild(div);
+
+})
+/*
 let h2 = document.createElement('h2');
 let btn1 = document.createElement('button');
 let btn2 = document.createElement('button');
@@ -37,30 +118,4 @@ btn3.textContent='Paper';
 document.body.appendChild(btn1);
 document.body.appendChild(btn2);
 document.body.appendChild(btn3);
-let count;
-let playerCount = 0;
-let computerCount = 0;
-btn1.addEventListener('click', ()=> {
-    let result = playRound('Rock', getComputerChoice());
-    calculateScore(result); 
-    h2.textContent = result;
-    pageName.appendChild(h2);
-    div.textContent = " Player Score: " + `${playerCount}` + `  Computer Score ${computerCount}`;
-    document.body.appendChild(div);
-});
-btn2.addEventListener('click', ()=> {
-    let result = playRound('Scissors', getComputerChoice());
-    calculateScore(result); 
-    h2.textContent = result;
-    pageName.appendChild(h2);
-    div.textContent = " Player Score: " + `${playerCount}` + `  Computer Score ${computerCount}`;
-    document.body.appendChild(div);
-});
-btn3.addEventListener('click', ()=> {
-    let result = playRound('Paper', getComputerChoice());
-    calculateScore(result); 
-    h2.textContent = result;
-    pageName.appendChild(h2);
-    div.textContent = " Player Score: " + `${playerCount}` + `  Computer Score ${computerCount}`;
-    document.body.appendChild(div);
-});
+*/

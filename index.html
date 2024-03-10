@@ -3,22 +3,25 @@
     <head>
         <meta charset="utf-8">
         <title RockPaperScissors></title>
+        <link rel="stylesheet" href="./style.css">
     </head>
     <body>
         <h1 class="pageHeader"> ROCK, PAPER, SCISSORS, SHOOT!</h1>
         <div class="game-container">
-            <div class="user-container">
-                <p class="user-Name"></p>
+            <div class="user-container" id="userContainer">
+                <p class="user-name">Eric</p>
             </div>
-            <ul>
-                <button class="Rock">Rock</button>
-                <button class="Paper">Paper</button>
-                <button class="Scissors">Scissors</button>
+            <ul class="buttons">
+                <button class="btn-rock">Rock</button>
+                <button class="btn-paper">Paper</button>
+                <button class="btn-scissors">Scissors</button>
             </ul>
-            <div class="computer-container">
+            <div class="computer-container" id="computerComputer">
                 <p class="computer-name">Steve</p>
             </div>
-        </game>
+        </div>
+        <div id="resetButtonContainer">
+        </div>
     </body>
     <script src="script.js"></script>
 </html>

@@ -1,0 +1,55 @@
+body{
+    background-color:honeydew;
+}
+h1.pageHeader{
+    text-align: center;
+}
+.game-container{
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+    border: solid 1px red;
+    height: 20rem;
+}  
+.user-container, .computer-container{
+    display:flex;
+    flex:1;
+    justify-content: center;
+    align-items: flex-end;
+    height: 80%;
+    font-size: 1.5rem;
+    border: solid 1px red;
+    margin:0 1rem;
+}
+.user-name,.computer-name{
+    border: solid 1px red;
+}
+.buttons{
+    display: flex;
+    height: 80%;
+    flex: 2.7;
+    padding: 0px;
+    gap:.75rem;
+
+}
+.btn-rock, .btn-paper,.btn-scissors{
+    flex:1;
+    border-radius: 1rem;
+    font-weight: bold;
+    font-size: 1.25rem;
+    background-color:aliceblue;
+}
+.scoreboard{
+    font-size:30px;
+}
+.result{
+    display:flex;
+    border:solid 1px darkorchid;
+    height: 2rem;
+    font-size: 2rem;
+    margin:0 auto;
+    width: 10rem;
+    border-radius: 2rem;
+    justify-content: center;
+    padding: .35rem;
+  }
